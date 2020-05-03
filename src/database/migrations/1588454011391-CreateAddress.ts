@@ -41,10 +41,12 @@ export class CreateAddress1588454011391 implements MigrationInterface {
           {
             name: "cep",
             type: "bigint",
+            isNullable: true,
           },
           {
             name: "complement",
             type: "varchar",
+            isNullable: true,
           },
           {
             name: "place_id",

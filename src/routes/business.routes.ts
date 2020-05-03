@@ -1,8 +1,10 @@
-import { Router } from "express";
+import { Router, json } from "express";
 
 import ensureAuthenticated from "../middleware/ensureAuthenticated";
 import CreateBusinessService from "../services/CreateBusinessService";
 import CreateBusinessAddressService from "../services/CreateBusinessAddressService";
+import AddProductService from "../services/AddProductService";
+import AddServiceService from "../services/AddServiceService";
 
 const businessRouter = Router();
 
@@ -26,5 +28,31 @@ businessRouter.post("/", ensureAuthenticated, async (request, response) => {
 
   return response.json(newBusiness);
 });
+
+businessRouter.post(
+  "/product",
+  ensureAuthenticated,
+  async (request, response) => {
+    const productToAdd = request.body;
+
+    const addProductService = new AddProductService();
+    const productCreated = await addProductService.execute(productToAdd);
+
+    return response.json(productCreated);
+  }
+);
+
+businessRouter.post(
+  "/service",
+  ensureAuthenticated,
+  async (request, response) => {
+    const serviceToAdd = request.body;
+
+    const addServiceService = new AddServiceService();
+    const serviceCreated = await addServiceService.execute(serviceToAdd);
+
+    return response.json(serviceCreated);
+  }
+);
 
 export default businessRouter;

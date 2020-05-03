@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from "typeorm";
 
-export class CreateBusiness1588453982718 implements MigrationInterface {
+export class CreateProductTable1588529012661 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "business",
+        name: "products",
         columns: [
           {
             name: "id",
@@ -23,46 +23,20 @@ export class CreateBusiness1588453982718 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "nome",
+            name: "name",
             type: "varchar",
           },
           {
-            name: "setor",
+            name: "description",
             type: "varchar",
+            width: 50,
           },
           {
-            name: "cnpj_cpf",
-            type: "varchar",
+            name: "value",
+            type: "float",
           },
           {
-            name: "openHour",
-            type: "timestamp",
-          },
-          {
-            name: "closeHour",
-            type: "timestamp",
-          },
-          {
-            name: "instagram",
-            type: "varchar",
-            isNullable: true,
-          },
-          {
-            name: "facebook",
-            type: "varchar",
-            isNullable: true,
-          },
-          {
-            name: "whatsapp",
-            type: "varchar",
-            isNullable: true,
-          },
-          {
-            name: "fone_cel",
-            type: "varchar",
-          },
-          {
-            name: "user_id",
+            name: "business_id",
             type: "uuid",
           },
           {
@@ -80,19 +54,19 @@ export class CreateBusiness1588453982718 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      "business",
+      "products",
       new TableForeignKey({
-        name: "userForeignKey",
-        columnNames: ["user_id"],
+        name: "businessForeignKey",
+        columnNames: ["business_id"],
         referencedColumnNames: ["id"],
-        referencedTableName: "users",
+        referencedTableName: "business",
         onDelete: "CASCADE",
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey("business", "userForeignKey");
-    await queryRunner.dropTable("business");
+    await queryRunner.dropForeignKey("products", "businessForeignKey");
+    await queryRunner.dropTable("products");
   }
 }
