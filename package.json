@@ -10,6 +10,8 @@
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "devDependencies": {
+    "@types/googlemaps": "^3.39.4",
+    "@types/multer": "^1.4.2",
     "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.6",
     "@types/jsonwebtoken": "^8.3.9",
@@ -18,7 +20,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@types/multer": "^1.4.2",
+    "@googlemaps/google-maps-services-js": "^2.6.0",
     "bcryptjs": "^2.4.3",
     "date-fns": "^2.12.0",
     "express": "^4.17.1",
