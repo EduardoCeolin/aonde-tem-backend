@@ -23,7 +23,7 @@ clietRouter.get(
 );
 
 clietRouter.get("/business", ensureAuthenticated, async (request, response) => {
-  const business_id = request.body;
+  const { business_id } = request.body;
   const businessRepository = getRepository(Business);
   const business = await businessRepository.findOne({
     where: { id: business_id },
