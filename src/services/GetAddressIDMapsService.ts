@@ -1,4 +1,8 @@
-import { Client, Status } from "@googlemaps/google-maps-services-js";
+import {
+  Client,
+  Status,
+  PlaceInputType,
+} from "@googlemaps/google-maps-services-js";
 import Address from "../models/Address";
 
 class GetAddressIDMapsService {
@@ -20,15 +24,15 @@ class GetAddressIDMapsService {
             address.state +
             " " +
             address.cep,
-          inputtype: "textquery",
+          inputtype: PlaceInputType.textQuery,
           fields: undefined,
           locationbias: undefined,
           language: undefined,
-          key: process.env.API_KEY,
+          key: process.env.API_KEY || "",
         },
         timeout: 1000, // milliseconds
       })
-      .then((r) => {
+      .then((r: any) => {
         if (r.data.status === Status.OK) {
           return r.data.candidates[0].place_id as string;
         } else {
