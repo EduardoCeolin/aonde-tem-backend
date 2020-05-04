@@ -1,9 +1,3 @@
-import { Pool } from "pg";
+import { createConnection } from "typeorm";
 
-const connectionString = {
-  connectionString: process.env.DATABASE_URL,
-};
-
-const pool = new Pool(connectionString);
-
-pool.connect();
+createConnection();
