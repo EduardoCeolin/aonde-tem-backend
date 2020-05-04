@@ -1,9 +1,9 @@
 // import { createConnection } from "typeorm";
-import { Pool } from "pg";
+import { Client } from "pg";
 
-const pool = new Pool({
+const client = new Client({
   connectionString: process.env.DATABASE_URL,
 });
 
-pool.connect();
+client.connect();
 //createConnection(typeOrmOptions);
