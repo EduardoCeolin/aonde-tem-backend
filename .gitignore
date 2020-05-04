@@ -2,6 +2,7 @@ node_modules/
 .idea/
 build/
 temp/
+.env
 
 tmp/
 !tmp/.gitkeep

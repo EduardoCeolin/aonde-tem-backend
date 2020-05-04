@@ -1,5 +1,4 @@
 import { Client, Status } from "@googlemaps/google-maps-services-js";
-import key from "../config/keyMaps";
 import Address from "../models/Address";
 
 class GetAddressIDMapsService {
@@ -25,7 +24,7 @@ class GetAddressIDMapsService {
           fields: undefined,
           locationbias: undefined,
           language: undefined,
-          key: key.GOOGLE_MAPS_API_KEY,
+          key: process.env.API_KEY,
         },
         timeout: 1000, // milliseconds
       })
