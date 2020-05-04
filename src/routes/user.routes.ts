@@ -1,3 +1,4 @@
+import { getRepository } from "typeorm";
 import { Router } from "express";
 import multer from "multer";
 
@@ -5,6 +6,8 @@ import uploadConfig from "../config/upload";
 import CreateUserService from "../services/CreateUserService";
 import ensureAuthenticated from "../middleware/ensureAuthenticated";
 import UpdateUserAvatarService from "../services/UpdateUserAvatarService";
+import AppError from "../errors/AppError";
+import User from "../models/User";
 
 const usersRouter = Router();
 const upload = multer(uploadConfig);
@@ -21,6 +24,10 @@ usersRouter.post("/", async (request, response) => {
       password,
       business,
     });
+
+    if (!user) {
+      throw new AppError("Erro ao criar usuario");
+    }
 
     delete user.password;
 

@@ -5,8 +5,36 @@ import CreateBusinessService from "../services/CreateBusinessService";
 import CreateBusinessAddressService from "../services/CreateBusinessAddressService";
 import AddProductService from "../services/AddProductService";
 import AddServiceService from "../services/AddServiceService";
+import { getRepository } from "typeorm";
+import Business from "../models/Business";
+import AppError from "../errors/AppError";
 
 const businessRouter = Router();
+
+businessRouter.get("/", ensureAuthenticated, async (request, response) => {
+  const businessRepository = getRepository(Business);
+  const business = await businessRepository.find();
+
+  return response.json(business);
+});
+
+businessRouter.get(
+  "/business",
+  ensureAuthenticated,
+  async (request, response) => {
+    const { business_id } = request.params;
+    const businessRepository = getRepository(Business);
+    const business = await businessRepository.findOne({
+      where: { id: business_id },
+    });
+
+    if (!business) {
+      throw new AppError("Business not found");
+    }
+
+    return response.json(business);
+  }
+);
 
 businessRouter.post("/", ensureAuthenticated, async (request, response) => {
   const business = request.body;

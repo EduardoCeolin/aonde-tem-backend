@@ -39,7 +39,15 @@ class CreateUserService {
 
     await usersRepository.save(user);
 
-    return user;
+    const userCreated = await usersRepository.findOne({
+      where: { id: user.id },
+    });
+
+    if (!userCreated) {
+      throw new AppError("Erro ao retornar usuario criado");
+    }
+
+    return userCreated;
   }
 }
 
