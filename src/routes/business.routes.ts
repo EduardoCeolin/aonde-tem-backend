@@ -18,23 +18,19 @@ businessRouter.get("/", ensureAuthenticated, async (request, response) => {
   return response.json(business);
 });
 
-businessRouter.get(
-  "/:businessID",
-  ensureAuthenticated,
-  async (request, response) => {
-    const businessID = request.params;
-    const businessRepository = getRepository(Business);
-    const business = await businessRepository.findOne({
-      where: { id: businessID },
-    });
+businessRouter.get("/find", ensureAuthenticated, async (request, response) => {
+  const { business_id } = request.body;
+  const businessRepository = getRepository(Business);
+  const business = await businessRepository.findOne({
+    where: { id: business_id },
+  });
 
-    if (!business) {
-      throw new AppError("Business not found");
-    }
-
-    return response.json(business);
+  if (!business) {
+    throw new AppError("Business not found");
   }
-);
+
+  return response.json(business);
+});
 
 businessRouter.post("/", ensureAuthenticated, async (request, response) => {
   const business = request.body;
