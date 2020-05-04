@@ -4,6 +4,7 @@ import {
   PlaceInputType,
 } from "@googlemaps/google-maps-services-js";
 import Address from "../models/Address";
+import AppError from "../errors/AppError";
 
 class GetAddressIDMapsService {
   public async execute(address: Address): Promise<string> {
@@ -36,7 +37,7 @@ class GetAddressIDMapsService {
         if (r.data.status === Status.OK) {
           return r.data.candidates[0].place_id as string;
         } else {
-          throw Error("Erro ao procurar place_id");
+          throw new AppError("Erro ao procurar place_id");
         }
       })
       .catch((e) => {

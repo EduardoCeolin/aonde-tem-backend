@@ -20,7 +20,7 @@ class AddProductService {
       },
     });
     if (!business) {
-      throw Error("Business doesn't exists.");
+      throw new AppError("Business doesn't exists.");
     }
 
     const newProduct = productRepository.create({
