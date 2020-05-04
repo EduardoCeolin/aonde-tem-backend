@@ -1,10 +1,10 @@
 {
   "type": "postgres",
-  "host": "localhost",
+  "host": "ec2-3-222-30-53.compute-1.amazonaws.com",
   "port": 5432,
-  "username": "postgres",
-  "password": "admin",
-  "database": "aondetem",
+  "username": "ucyhnytlipttvr",
+  "password": "59b009c73b0b3386515821e461ff42ab2200b2b8b2b06a2f32dffd037b45d73c",
+  "database": "d9v3fuc1o1708m",
   "entities": ["./src/models/*.ts"],
   "migrations": ["./src/database/migrations/*.ts"],
   "cli": {
