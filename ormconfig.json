@@ -6,8 +6,8 @@
   "password": "41dfa42666f295c4052262bd7a38b10ecfb4ac787560068e888e9a984919785d",
   "database": "d70ss0d4uije0q",
   "entities": ["./src/models/*.ts"],
-  "migrations": ["./src/database/migrations/*.ts"],
+  "migrations": ["./database/migrations/*.js"],
   "cli": {
-    "migrationsDir": "./src/database/migrations"
+    "migrationsDir": "./database/migrations.js"
   }
 }
