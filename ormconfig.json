@@ -1,19 +1,13 @@
-// require("dotenv").config();
-
-// const connectionOptions = PostgressConnectionStringParser.parse(
-//   process.env.DATABASE_URL
-// );
-
-// module.exports = {
-//   type: "postgres",
-//   host: connectionOptions.host,
-//   port: connectionOptions.port,
-//   username: connectionOptions.username,
-//   password: connectionOptions.password,
-//   database: connectionOptions.database,
-//   entities: ["./src/models/*.ts"],
-//   migrations: ["./src/database/migrations/*.ts"],
-//   cli: {
-//     migrationsDir: "./src/database/migrations",
-//   },
-// };
+{
+  "type": "postgres",
+  "host": "ec2-52-87-135-240.compute-1.amazonaws.com",
+  "port": 5432,
+  "username": "kzduzaripdfyew",
+  "password": "41dfa42666f295c4052262bd7a38b10ecfb4ac787560068e888e9a984919785d",
+  "database": "d70ss0d4uije0q",
+  "entities": ["./src/models/*.ts"],
+  "migrations": ["./src/database/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
+}
