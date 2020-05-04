@@ -5,9 +5,9 @@
   "username": "kzduzaripdfyew",
   "password": "41dfa42666f295c4052262bd7a38b10ecfb4ac787560068e888e9a984919785d",
   "database": "d70ss0d4uije0q",
-  "entities": ["./models/*.js"],
-  "migrations": ["./database/migrations/*.js"],
+  "entities": ["models/*.js"],
+  "migrations": ["database/migrations/*.js"],
   "cli": {
-    "migrationsDir": "./database/migrations"
+    "migrationsDir": "database/migrations"
   }
 }
