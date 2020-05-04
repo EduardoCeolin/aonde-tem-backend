@@ -16,6 +16,7 @@
     "@types/googlemaps": "^3.39.4",
     "@types/jsonwebtoken": "^8.3.9",
     "@types/multer": "^1.4.2",
+    "@types/pg": "^7.14.3",
     "eslint-import-resolver-typescript": "^2.0.0",
     "rimraf": "^3.0.2",
     "ts-node-dev": "^1.0.0-pre.44",
