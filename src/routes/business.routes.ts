@@ -19,13 +19,13 @@ businessRouter.get("/", ensureAuthenticated, async (request, response) => {
 });
 
 businessRouter.get(
-  "/business",
+  "/:businessID",
   ensureAuthenticated,
   async (request, response) => {
-    const { business_id } = request.params;
+    const businessID = request.params;
     const businessRepository = getRepository(Business);
     const business = await businessRepository.findOne({
-      where: { id: business_id },
+      where: { id: businessID },
     });
 
     if (!business) {
