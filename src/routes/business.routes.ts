@@ -8,6 +8,7 @@ import AddServiceService from "../services/AddServiceService";
 import { getRepository } from "typeorm";
 import Business from "../models/Business";
 import AppError from "../errors/AppError";
+import Address from "../models/Address";
 
 const businessRouter = Router();
 
@@ -15,12 +16,16 @@ businessRouter.get("/", ensureAuthenticated, async (request, response) => {
   const businessRepository = getRepository(Business);
   const business = await businessRepository.find();
 
+  business.map((b) => {});
+
   return response.json(business);
 });
 
 businessRouter.get("/find", ensureAuthenticated, async (request, response) => {
   const { business_id } = request.body;
   const businessRepository = getRepository(Business);
+  const addressRepository = getRepository(Address);
+
   const business = await businessRepository.findOne({
     where: { id: business_id },
   });
@@ -29,7 +34,17 @@ businessRouter.get("/find", ensureAuthenticated, async (request, response) => {
     throw new AppError("Business not found");
   }
 
-  return response.json(business);
+  const address = await addressRepository.findOne({
+    where: { business_id: business_id },
+  });
+
+  if (!address) {
+    throw new AppError("Addres of business not found");
+  }
+
+  business.address = address;
+
+  return response.json({ business });
 });
 
 businessRouter.post("/", ensureAuthenticated, async (request, response) => {
